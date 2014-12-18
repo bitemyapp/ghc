@@ -1,0 +1,7 @@
+{-# LANGUAGE Trustworthy #-}
+{-# LANGUAGE NoImplicitPrelude #-}
+
+module GHC.Base (
+       Bool(..)
+  ) where
+

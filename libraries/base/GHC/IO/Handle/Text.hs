@@ -36,7 +36,7 @@ import GHC.IO.FD
 import GHC.IO.Buffer
 import qualified GHC.IO.BufferedIO as Buffered
 import GHC.IO.Exception
-import GHC.Exception
+import {-# SOURCE #-} GHC.Exception
 import GHC.IO.Handle.Types
 import GHC.IO.Handle.Internals
 import qualified GHC.IO.Device as IODevice

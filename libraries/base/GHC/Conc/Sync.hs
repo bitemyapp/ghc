@@ -113,7 +113,7 @@ import {-# SOURCE #-} GHC.IO.Handle.FD ( stdout )
 import GHC.IO
 import GHC.IO.Encoding.UTF8
 import GHC.IO.Exception
-import GHC.Exception
+import {-# SOURCE #-} GHC.Exception
 import qualified GHC.Foreign
 import GHC.IORef
 import GHC.MVar

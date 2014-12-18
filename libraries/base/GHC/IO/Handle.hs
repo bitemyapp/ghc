@@ -60,7 +60,7 @@ import GHC.IO.Handle.Text
 import qualified GHC.IO.BufferedIO as Buffered
 
 import GHC.Base
-import GHC.Exception
+import {-# SOURCE #-} GHC.Exception
 import GHC.MVar
 import GHC.IORef
 import GHC.Show

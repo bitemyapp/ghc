@@ -42,7 +42,7 @@ module GHC.IO (
 
 import GHC.Base
 import GHC.ST
-import GHC.Exception
+import {-# SOURCE #-} GHC.Exception
 import GHC.Show
 
 import {-# SOURCE #-} GHC.IO.Exception ( userError )

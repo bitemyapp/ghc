@@ -25,7 +25,8 @@ to get a visibly-bottom value.
 -}
 
 module GHC.Exception ( SomeException, errorCallException,
-                       divZeroException, overflowException, ratioZeroDenomException
+                       divZeroException, overflowException, ratioZeroDenomException,
+                       Exception
     ) where
 import GHC.Types( Char )
 

@@ -26,7 +26,7 @@ module System.IO.Unsafe (
 import GHC.Base
 import GHC.IO
 import GHC.IORef
-import GHC.Exception
+import {-# SOURCE #-} GHC.Exception
 import Control.Exception
 
 -- | A slightly faster version of `System.IO.fixIO` that may not be

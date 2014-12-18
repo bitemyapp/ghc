@@ -49,7 +49,7 @@ import Unsafe.Coerce
 
 import GHC.Base
 import GHC.Show
-import GHC.Exception
+import {-# SOURCE #-} GHC.Exception
 
 -------------------------------------------------------------
 --

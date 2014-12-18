@@ -110,7 +110,7 @@ import GHC.Classes
 import GHC.CString
 import GHC.Magic
 import GHC.Prim
-import GHC.Err
+import {-# SOURCE #-} GHC.Err
 import {-# SOURCE #-} GHC.IO (failIO)
 
 import GHC.Tuple ()     -- Note [Depend on GHC.Tuple]

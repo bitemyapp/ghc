@@ -4,6 +4,7 @@
            , MagicHash
            , DeriveDataTypeable
   #-}
+{-# LANGUAGE PatternSynonyms #-}
 {-# OPTIONS_HADDOCK hide #-}
 
 -----------------------------------------------------------------------------
@@ -33,6 +34,7 @@ import Data.Typeable (Typeable, cast)
    -- loop: Data.Typeable -> GHC.Err -> GHC.Exception
 import GHC.Base
 import GHC.Show
+import {-# SOURCE #-} GHC.Stack (renderStack)
 
 {- |
 The @SomeException@ type is the root of the exception type hierarchy.
@@ -158,20 +160,24 @@ instance Exception SomeException where
 throw :: Exception e => e -> a
 throw e = raise# (toException e)
 
--- |This is thrown when the user calls 'error'. The @String@ is the
+-- | This is thrown when the user calls 'error'. The msg @String@ is the
 -- argument given to 'error'.
-newtype ErrorCall = ErrorCall String
-    deriving (Eq, Ord, Typeable)
+data ErrorCall =
+  ErrorCall_ { msg :: String
+             , profilingStack :: String
+             }
+     deriving (Eq, Ord, Typeable)
+pattern ErrorCall msg <- ErrorCall_ msg _
 
 instance Exception ErrorCall
 
 instance Show ErrorCall where
-    showsPrec _ (ErrorCall err) = showString err
+    showsPrec _ (ErrorCall_ err stack) = showString (err ++ '\n' : renderStack stack)
 
-errorCallException :: String -> SomeException
-errorCallException s = toException (ErrorCall s)
+errorCallException :: String -> String -> SomeException
+errorCallException s stack = toException (ErrorCall_ s stack)
 
--- |Arithmetic exceptions.
+-- | Arithmetic exceptions.
 data ArithException
   = Overflow
   | Underflow

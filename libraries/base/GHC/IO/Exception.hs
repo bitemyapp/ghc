@@ -45,10 +45,10 @@ module GHC.IO.Exception (
 
 import GHC.Base
 import GHC.List
-import GHC.IO
+import {-# SOURCE #-} GHC.IO
 import GHC.Show
 import GHC.Read
-import GHC.Exception
+import {-# SOURCE #-} GHC.Exception
 import GHC.IO.Handle.Types
 import Foreign.C.Types
 

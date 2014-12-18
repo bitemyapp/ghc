@@ -99,7 +99,7 @@ module Control.Exception.Base (
 import GHC.Base
 import GHC.IO hiding (bracket,finally,onException)
 import GHC.IO.Exception
-import GHC.Exception
+import {-# SOURCE #-} GHC.Exception
 import GHC.Show
 -- import GHC.Exception hiding ( Exception )
 import GHC.Conc.Sync

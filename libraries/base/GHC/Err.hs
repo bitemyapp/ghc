@@ -22,17 +22,23 @@
 -----------------------------------------------------------------------------
 
 module GHC.Err( absentErr, error, undefined ) where
+
 import GHC.CString ()
+import GHC.IO (unsafeDupablePerformIO)
 import GHC.Types
 import GHC.Prim
 import GHC.Integer ()   -- Make sure Integer is compiled first
                         -- because GHC depends on it in a wired-in way
                         -- so the build system doesn't see the dependency
 import {-# SOURCE #-} GHC.Exception( errorCallException )
+import {-# SOURCE #-} GHC.Stack (ccsToStrings, getCurrentCCS, renderStack)
 
 -- | 'error' stops execution and displays an error message.
 error :: [Char] -> a
-error s = raise# (errorCallException s)
+error s = unsafeDupablePerformIO $ do
+  stack <- ccsToStrings =<< getCurrentCCS s
+  raise# (errorCallException s stack)
+
 
 -- | A special case of 'error'.
 -- It is expected that compilers will recognize this and insert error
